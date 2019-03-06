@@ -6,8 +6,9 @@ Services  : Nginx 1.14, PHP 7.2-fpm, MySQL 5.7
 
 Tree
 ```
-├── configs
+├── docker
 │   ├── nginx
+│       └── Dockerfile
 │   │   └── default.conf
 │   └── php
 │       └── Dockerfile
