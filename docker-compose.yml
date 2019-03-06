@@ -3,6 +3,7 @@ version: '3'
 services:
 
     php:
+        container_name: php
         build:
                 context: ./docker/php
         ports:
@@ -15,6 +16,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
  
     nginx:
+        container_name: nginx
         image: nginx:1.14-alpine
         ports:
             - 80:80
@@ -25,6 +27,7 @@ services:
             - php
  
     mysql:
+        container_name: mysql
         image: mysql:5.7
         ports:
             - 3306:3306
