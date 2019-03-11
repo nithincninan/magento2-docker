@@ -36,5 +36,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 5. To Run on a Running Container(php): 
       ```docker exec -it php bash```
 6. Install Magento Instance in folder ```magento23```
-7. Configure your hosts file: 127.0.0.1 magento23.loc
+7. Configure your hosts file: 127.0.0.1 magento23.loc 
+   1. In windows: c:\Windows\System32\Drivers\etc\hosts.
+   2. Mac/Ubunut: /etc/hosts
 8. Open magento23.loc
