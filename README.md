@@ -43,6 +43,8 @@ Magento 2.3 Docker Setup:
    2. Mac/Ubuntu:-  /etc/hosts
 8. Open magento23.loc
 9. MailHog:- You are able to see all the emails from docker(Magento Instance) on http://localhost:8025/
+     Eg: php -r "\$from = \$to = 'youremail@gmail.com'; \$x = mail(\$to, 'subject'.time(), 'Hello World', 'From: '. \$from); var_dump(\$x);"
+              o/p - bool(true)
 
 ```
 Note: While installing the Mailhog, if we get the below error:
