@@ -14,6 +14,9 @@ services:
         environment:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            PHP_XDEBUG_ENABLED: 1
+            XDEBUG_CONFIG: remote_host=host.docker.internal
+            PHP_IDE_CONFIG: "serverName=Magento2"
  
     nginx:
         container_name: nginx
@@ -38,3 +41,12 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    mailhog:
+        container_name: mail
+        image: mailhog/mailhog:latest
+        links:
+            - php
+        ports:
+            - "1025:1025"
+            - "8025:8025"
