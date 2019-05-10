@@ -42,6 +42,7 @@ Magento 2.3 Docker Setup:
    1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
    2. Mac/Ubuntu:-  /etc/hosts
 8. Open magento23.loc
+9. MailHog:- You are able to see all the emails from docker(Magento Instance) on http://localhost:8025/
 
 ```
 Note: While installing the Mailhog, if we get the below error:
