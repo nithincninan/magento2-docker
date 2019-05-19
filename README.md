@@ -1,4 +1,4 @@
-# Magento 2.3 Docker + Xdebug + Phpstorm
+# Magento 2.3 Docker + Xdebug + Phpstorm + MailHog
 
 Magento 2.3 Docker Environment
 
