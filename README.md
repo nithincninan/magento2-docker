@@ -23,7 +23,7 @@ Magento 2.3 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 2. Build the docker Images: ```docker-compose up --build```
-3. Add environmental path ```SHELL=/bin/bash``` (windows)
+3. Add System variable in environmental settings ```SHELL=/bin/bash``` (windows) 
 4. To show Running Containers use command ```docker ps```
 
 ```
