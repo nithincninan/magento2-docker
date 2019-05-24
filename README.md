@@ -56,7 +56,7 @@ $ docker logout
 and then pull again. As it is public repo you shouldn't need to login
 ```
 
-10. To Setup Muiltiple Website:
+# 10. To Setup Muiltiple Website:
 
  10.1) Setup Websites, Stores and Storeviews in Magento Admin 
  10.2) Modify nginx config file in docker(docker/nginx/default.conf):
