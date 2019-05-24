@@ -94,7 +94,7 @@ and then pull again. As it is public repo you shouldn't need to login
   
   10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)<br />
   
-  >>> Add the below lines before include statement:   
+   Add the below lines before include statement:   
    
     # START - Multisite customization
     fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
@@ -103,7 +103,7 @@ and then pull again. As it is public repo you shouldn't need to login
    
  ie, 
 
-   `
+   ```
     # PHP entry point for main application
    location ~ ^/(index|get|static|errors/report|errors/404|errors/503|health_check)\.php$ {
        try_files $uri =404;
@@ -122,5 +122,5 @@ and then pull again. As it is public repo you shouldn't need to login
        fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
        # END - Multisite customization
        include        fastcgi_params;
-   }`
+   }```
    
