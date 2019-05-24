@@ -58,8 +58,8 @@ and then pull again. As it is public repo you shouldn't need to login
 
 # 10. To Setup Muiltiple Website:
 
- 10.1) Setup Websites, Stores and Storeviews in Magento Admin 
- 10.2) Modify nginx config file in docker(docker/nginx/default.conf):
+ 10.1) Setup Websites, Stores and Storeviews in Magento Admin <br />
+ 10.2) Modify nginx config file in docker(docker/nginx/default.conf): <br />
          ```
          map $http_host $MAGE_RUN_CODE {
             magento23-second.loc second_website_code;
@@ -85,12 +85,14 @@ and then pull again. As it is public repo you shouldn't need to login
               error_log /var/log/nginx/error.log;
               access_log /var/log/nginx/access.log;
           }
-         ```
+         ``` <br />
+       
   10.3). Configure your hosts file: 127.0.0.1 magento23.loc magento23-second.loc
             1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
             2. Mac/Ubuntu:-  /etc/hosts
-  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)
-  >>> Add the below lines before include statement:     
+  <br />          
+  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)<br />
+  >>> Add the below lines before include statement:   
     
     # START - Multisite customization
     fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
@@ -117,4 +119,4 @@ and then pull again. As it is public repo you shouldn't need to login
        fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
        # END - Multisite customization
        include        fastcgi_params;
-   }```
+   }```<br />
