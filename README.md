@@ -58,47 +58,47 @@ and then pull again. As it is public repo you shouldn't need to login
 
 10. To Setup Muiltiple Website:
 
-1. Setup Websites, Stores and Storeviews in Magento Admin 
-2. Modify nginx config file in docker(docker/nginx/default.conf):
-```
-map $http_host $MAGE_RUN_CODE {
-   magento23-second.loc second_website_code;
-   magento23.loc base;
-}
-upstream fastcgi_backend {
-     #server  unix:/run/php/php7.2-fpm.sock;
-     server php:9000;
- }
- server {
-     listen 80;
-     server_name magento23.loc magento23-second.loc;
-     set $MAGE_ROOT /var/www/magento23;
-     set $MAGE_MODE developer;
-     fastcgi_param  MAGE_MODE $MAGE_MODE;
-     
-     #Setup multi websites
-     set $MAGE_RUN_TYPE website;
-     fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
-     fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
-    
-     include /var/www/magento23/nginx.conf.sample;
-     error_log /var/log/nginx/error.log;
-     access_log /var/log/nginx/access.log;
- }
-```
- 3. Configure your hosts file: 127.0.0.1 magento23.loc magento23-second.loc
-   1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
-   2. Mac/Ubuntu:-  /etc/hosts
- 4. Modifty nginx.conf.sample(magento23/nginx.conf.sample)
+ 10.1) Setup Websites, Stores and Storeviews in Magento Admin 
+ 10.2) Modify nginx config file in docker(docker/nginx/default.conf):
+         ```
+         map $http_host $MAGE_RUN_CODE {
+            magento23-second.loc second_website_code;
+            magento23.loc base;
+         }
+         upstream fastcgi_backend {
+              #server  unix:/run/php/php7.2-fpm.sock;
+              server php:9000;
+          }
+          server {
+              listen 80;
+              server_name magento23.loc magento23-second.loc;
+              set $MAGE_ROOT /var/www/magento23;
+              set $MAGE_MODE developer;
+              fastcgi_param  MAGE_MODE $MAGE_MODE;
+
+              #Setup multi websites
+              set $MAGE_RUN_TYPE website;
+              fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
+              fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
+
+              include /var/www/magento23/nginx.conf.sample;
+              error_log /var/log/nginx/error.log;
+              access_log /var/log/nginx/access.log;
+          }
+         ```
+  10.3). Configure your hosts file: 127.0.0.1 magento23.loc magento23-second.loc
+            1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
+            2. Mac/Ubuntu:-  /etc/hosts
+  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)
   >>> Add the below lines before include statement:     
     
     # START - Multisite customization
     fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
     fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
     # END - Multisite customization
- 
+
  ie, 
- 
+
     ```# PHP entry point for main application
    location ~ ^/(index|get|static|errors/report|errors/404|errors/503|health_check)\.php$ {
        try_files $uri =404;
