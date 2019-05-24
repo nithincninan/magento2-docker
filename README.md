@@ -1,4 +1,4 @@
-# Magento 2.3 Docker + Xdebug + Phpstorm + MailHog
+# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website
 
 Magento 2.3 Docker Environment
 
@@ -122,5 +122,5 @@ and then pull again. As it is public repo you shouldn't need to login
        fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
        # END - Multisite customization
        include        fastcgi_params;
-   }```
+   }
    
