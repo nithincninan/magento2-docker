@@ -60,6 +60,7 @@ and then pull again. As it is public repo you shouldn't need to login
 
  10.1) Setup Websites, Stores and Storeviews in Magento Admin <br />
  10.2) Modify nginx config file in docker(docker/nginx/default.conf): <br />
+ 
          ```
          map $http_host $MAGE_RUN_CODE {
             magento23-second.loc second_website_code;
@@ -85,23 +86,25 @@ and then pull again. As it is public repo you shouldn't need to login
               error_log /var/log/nginx/error.log;
               access_log /var/log/nginx/access.log;
           }
-         ``` <br />
+         ``` 
        
   10.3). Configure your hosts file: 127.0.0.1 magento23.loc magento23-second.loc
             1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
-            2. Mac/Ubuntu:-  /etc/hosts
-  <br />          
-  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)<br />
+            2. Mac/Ubuntu:-  /etc/hosts     
+  
+  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)
+  
   >>> Add the below lines before include statement:   
-    
+   ``` 
     # START - Multisite customization
     fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
     fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
     # END - Multisite customization
-
+   ```
  ie, 
 
-    ```# PHP entry point for main application
+   ```
+    # PHP entry point for main application
    location ~ ^/(index|get|static|errors/report|errors/404|errors/503|health_check)\.php$ {
        try_files $uri =404;
        fastcgi_pass   fastcgi_backend;
@@ -119,4 +122,5 @@ and then pull again. As it is public repo you shouldn't need to login
        fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
        # END - Multisite customization
        include        fastcgi_params;
-   }```<br />
+   }```
+   
