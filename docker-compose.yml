@@ -50,3 +50,14 @@ services:
         ports:
             - "1025:1025"
             - "8025:8025"
+
+    blackfire:
+        container_name: blackfire_vs
+        image: blackfire/blackfire
+        ports: ["8707"]
+        environment:
+            # Exposes BLACKFIRE_* environment variables from the host
+            BLACKFIRE_SERVER_ID: ### Add server id ####
+            BLACKFIRE_SERVER_TOKEN: ### Add server token ###
+            BLACKFIRE_CLIENT_ID: ### Add client id ###
+            BLACKFIRE_CLIENT_TOKEN: ### Add client Token ###

@@ -123,4 +123,52 @@ and then pull again. As it is public repo you shouldn't need to login
        # END - Multisite customization
        include        fastcgi_params;
    }
+   ```
    
+  #11. Integrating Blackfire.io with Docker Compose
+  
+        Official Documentation: https://blackfire.io/docs/integrations/docker/index
+  
+  11.1. Pre-requisites:
+  
+    1. Add a Blackfire Account: Blackfire stores all profiles on their server - https://blackfire.io/
+    
+        >>>> You can see credentials Server ID, Server Token, Client ID and Client Token in https://blackfire.io/my/settings/credentials
+        Chrome: https://blackfire.io/docs/integrations/chrome
+        Firefox: https://blackfire.io/docs/integrations/firefox
+        
+   11.2. Integrate Blackfire with your Docker Compose:
+   
+    1. Add Blackfire Agent to your network:
+            
+         docker-compose.yaml
+            
+            blackfire:
+                    container_name: blackfire_vs
+                    image: blackfire/blackfire
+                    ports: ["8707"]
+                    environment:
+                        # Exposes BLACKFIRE_* environment variables from the host
+                        BLACKFIRE_SERVER_ID: ### Add server id ####
+                        BLACKFIRE_SERVER_TOKEN: ### Add server token ###
+                        BLACKFIRE_CLIENT_ID: ### Add client id ###
+                        BLACKFIRE_CLIENT_TOKEN: ### Add client Token ###
+  
+    2. Add Blackfire PHP Probe and CLI tool to your application container && Point your PHP Probe to your Agent (blackfire.ini)
+    
+         Dockerfile:
+         
+            RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
+                && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
+                && mkdir -p /tmp/blackfire \
+                && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire \
+                && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get ('extension_dir');")/blackfire.so \
+                && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
+                && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
+            
+            RUN mkdir -p /tmp/blackfire \
+                && curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire \
+                && mv /tmp/blackfire/blackfire /usr/bin/blackfire \
+                && rm -Rf /tmp/blackfire
+                
+    
