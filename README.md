@@ -130,7 +130,7 @@ and then pull again. As it is public repo you shouldn't need to login
   
   11.1. Pre-requisites:
   
-    1. Add a Blackfire Account: Blackfire stores all profiles on their server - https://blackfire.io/
+    1. Add a Blackfire Account: https://blackfire.io/ (Blackfire stores all profiles on their server)
     
         >>>> You can see credentials Server ID, Server Token, Client ID and Client Token in https://blackfire.io/my/settings/credentials
         Chrome: https://blackfire.io/docs/integrations/chrome
