@@ -125,7 +125,7 @@ and then pull again. As it is public repo you shouldn't need to login
    }
    ```
    
-  #11. Integrating Blackfire.io with Docker Compose
+#11. Integrating Blackfire.io with Docker Compose
   
         Official Documentation: https://blackfire.io/docs/integrations/docker/index
   
