@@ -1,4 +1,4 @@
-# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire
+# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis
 
 Magento 2.3 Docker Environment
 
