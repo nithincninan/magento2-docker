@@ -170,4 +170,14 @@ and then pull again. As it is public repo you shouldn't need to login
                 && mv /tmp/blackfire/blackfire /usr/bin/blackfire \
                 && rm -Rf /tmp/blackfire
                 
+   11.3 Integrating Redis with Docker Compose: 
+   
+     1. Add Redis to your network:
+            
+         docker-compose.yaml
+   
+            redis:
+              container_name: redis
+              image: redis:latest
     
+      
