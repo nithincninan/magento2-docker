@@ -1,4 +1,4 @@
-# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis
+# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight
 
 Magento 2.3 Docker Environment
 
@@ -171,7 +171,7 @@ and then pull again. As it is public repo you shouldn't need to login
                 && rm -Rf /tmp/blackfire
                 
 
-# 12. Integrate Redis in Docker Compose:
+# 12. Integrate Redis/Redisinsight in Docker Compose:
    
      1. Add Redis to your network:
             
