@@ -179,6 +179,13 @@ and then pull again. As it is public repo you shouldn't need to login
    
             redis:
               container_name: redis
-              image: redis:latest
+              #image: redis:latest
+              image: redis:5.0.5
+            
+            redisinsight:
+              container_name: redisinsight
+              image: redislabs/redisinsight:latest
+              ports:
+                  - 8001:8001
     
       
