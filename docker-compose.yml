@@ -16,7 +16,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             PHP_XDEBUG_ENABLED: 1
             XDEBUG_CONFIG: remote_host=host.docker.internal
-            PHP_IDE_CONFIG: "serverName=Magento2"
+            PHP_IDE_CONFIG: "serverName=magento242"
  
     nginx:
         container_name: nginx

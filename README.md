@@ -30,18 +30,20 @@ Magento 2.4 Docker Setup:
 λ docker ps
    CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                                            NAMES
    3ad5fb3428c6        nginx:1.14-alpine        "nginx -g 'daemon of…"   7 seconds ago       Up 5 seconds        0.0.0.0:80->80/tcp                               nginx
-   409c95c7d215        mysql:5.7                "docker-entrypoint.s…"   7 seconds ago       Up 5 seconds        0.0.0.0:3306->3306/tcp, 33060/tcp                mysql
+   409c95c7d215        mysql:5.7                "docker-entrypoint.s…"   7 seconds ago       Up 5 seconds        0.0.0.0:3306->3306/tcp, 33060/tcp                mariadb
    79d53ca16356        mailhog/mailhog:latest   "MailHog"                7 seconds ago       Up 5 seconds        0.0.0.0:1025->1025/tcp, 0.0.0.0:8025->8025/tcp   mail
    3badaa76979b        docker_php               "docker-php-entrypoi…"   8 seconds ago       Up 6 seconds        0.0.0.0:9000->9000/tcp                           php
+   0c8e1f030202        elasticsearch:7.6.2      "/usr/local/bin/dock…"   9 days ago          Up 26 hours         0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp                                                 elasticsearch
+   3497490e7765   rabbitmq:3-management         "docker-entrypoint.s…"   26 hours ago        Up 26 hours         4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, :::5672->5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp, :::15672->15672/tcp   rabbitmq
 ````
 
 5. To Run on a Running Container(php): 
       ```docker exec -it php bash```
-6. Install Magento Instance in folder ```magento23```
-7. Configure your hosts file: 127.0.0.1 magento23.loc 
+6. Install Magento Instance in folder ```magento242```
+7. Configure your hosts file: 127.0.0.1 magento24.loc 
    1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
    2. Mac/Ubuntu:-  /etc/hosts
-8. Open magento23.loc
+8. Open magento242.loc
 9. MailHog:- You are able to see all the emails from docker(Magento Instance) on http://localhost:8025/
 
      Eg: php -r "\$from = \$to = 'youremail@gmail.com'; \$x = mail(\$to, 'subject'.time(), 'Hello World', 'From: '. \$from); var_dump(\$x);"
@@ -63,17 +65,16 @@ and then pull again. As it is public repo you shouldn't need to login
  
          
          map $http_host $MAGE_RUN_CODE {
-            magento23-second.loc second_website_code;
-            magento23.loc base;
+            magento242-second.loc second_website_code;
+            magento242.loc base;
          }
          upstream fastcgi_backend {
-              #server  unix:/run/php/php7.2-fpm.sock;
               server php:9000;
           }
           server {
               listen 80;
-              server_name magento23.loc magento23-second.loc;
-              set $MAGE_ROOT /var/www/magento23;
+              server_name magento242.loc magento242-second.loc;
+              set $MAGE_ROOT /var/www/magento242;
               set $MAGE_MODE developer;
               fastcgi_param  MAGE_MODE $MAGE_MODE;
 
@@ -82,17 +83,17 @@ and then pull again. As it is public repo you shouldn't need to login
               fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
               fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
 
-              include /var/www/magento23/nginx.conf.sample;
+              include /var/www/magento242/nginx.conf.sample;
               error_log /var/log/nginx/error.log;
               access_log /var/log/nginx/access.log;
           }
           
        
-  10.3). Configure your hosts file: 127.0.0.1 magento23.loc magento23-second.loc <br />
+  10.3). Configure your hosts file: 127.0.0.1 magento242.loc magento242-second.loc <br />
             1. In windows:-  c:\Windows\System32\Drivers\etc\hosts. <br />
             2. Mac/Ubuntu:-  /etc/hosts     <br />
   
-  10.4). Modifty nginx.conf.sample(magento23/nginx.conf.sample)<br />
+  10.4). Modifty nginx.conf.sample(magento242/nginx.conf.sample)<br />
   
    PHP entry point:- Add the below lines before include statement:   
    
