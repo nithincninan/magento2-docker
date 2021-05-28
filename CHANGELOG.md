@@ -3,8 +3,8 @@ Changelog
 [2.0.5] - 2020-05-29
 
 Added
-Added 2.4.2 docker setup services
-Added elasticsearch and rabbitmq
+ * 2.4.2 docker setup services
+ * Added elasticsearch and rabbitmq
 
 [0.0.1] - 2019-06-10
 
