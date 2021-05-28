@@ -14,7 +14,7 @@ Tree
 │       └── Dockerfile
 │       └── www.conf
 ├── docker-compose.yml
-├── magento23
+├── magento242
 │   ├── nginx.conf.sample
 └── Readme.md
 ```
