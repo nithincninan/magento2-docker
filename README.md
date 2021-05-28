@@ -1,8 +1,8 @@
-# Magento 2.3 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight
+# Magento 2.4.2 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Elasticsearch + Rabbitmq
 
-Magento 2.3 Docker Environment
+Magento 2.4.2 Docker Environment
 
-Services  : Nginx 1.14, PHP 7.2-fpm, MySQL 5.7
+Services  : Nginx 1.14, PHP 7.4-fpm-buster, Mariadb 10.4
 
 Tree
 ```
@@ -19,7 +19,7 @@ Tree
 └── Readme.md
 ```
 
-Magento 2.3 Docker Setup:
+Magento 2.4 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 2. Build the docker Images: ```docker-compose up --build```
