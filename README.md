@@ -191,7 +191,7 @@ and then pull again. As it is public repo you shouldn't need to login
     
 
    Using Redis for session and cache
-   Open ./magento/app/etc/env.php and add/update the corresponding data:
+   Open app/etc/env.php and add/update the corresponding data:
 
    ```...
        'session' => [
@@ -232,5 +232,58 @@ and then pull again. As it is public repo you shouldn't need to login
        ]
    ...
    ```
+# 13. Integrate Rabbitmq in Docker Compose:
+    
+    ```
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3-management
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+    ```
+
+    Open app/etc/env.php and add/update the corresponding data:
+    ```
+     'queue' => [
+        'amqp' => [
+            'host' => 'rabbitmq',
+            'user' => 'mdc_user',
+            'exchange_id' => 'mdc',
+            'password' => 'mdc_pass',
+            'port' => '5672',
+            'virtualhost' => '/'
+        ],
+        'consumers_wait_for_messages' => 0
+    ],
+
+# 14. Integrate Elasticsearch in Docker Compose:
+
+    ```
+    elasticsearch:
+        image: elasticsearch:7.6.2
+        container_name: elasticsearch
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            "discovery.type": "single-node"
+    ```
+
+    Open app/etc/env.php and add/update the corresponding data:
+    ```
+     'system' => [
+        'default' => [
+            'catalog' => [
+                'search' => [
+                    'engine' => 'elasticsearch7',
+                    'elasticsearch7_server_hostname' => 'elasticsearch',
+                    'elasticsearch7_server_port' => '9200',
+                    'elasticsearch7_index_prefix' => 'magento2_bbw'
+                ]
+            ]
+        ]
+    ],
+
 
  

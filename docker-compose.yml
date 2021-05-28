@@ -68,7 +68,7 @@ services:
 
     elasticsearch:
         image: elasticsearch:7.6.2
-        container_name: elasticsearch_bbw
+        container_name: elasticsearch
         ports:
             - "9200:9200"
             - "9300:9300"
@@ -76,7 +76,7 @@ services:
             "discovery.type": "single-node"
 
     blackfire:
-        container_name: blackfire_vs
+        container_name: blackfire
         image: blackfire/blackfire
         ports: ["8707"]
         environment:
