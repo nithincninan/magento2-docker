@@ -279,7 +279,7 @@ and then pull again. As it is public repo you shouldn't need to login
                     'engine' => 'elasticsearch7',
                     'elasticsearch7_server_hostname' => 'elasticsearch',
                     'elasticsearch7_server_port' => '9200',
-                    'elasticsearch7_index_prefix' => 'magento2_bbw'
+                    'elasticsearch7_index_prefix' => 'magento2_index'
                 ]
             ]
         ]
