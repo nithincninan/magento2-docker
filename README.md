@@ -1,6 +1,6 @@
-# Magento 2.4.2 Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Elasticsearch + Rabbitmq
+# Magento 2.4.x Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Elasticsearch + Rabbitmq
 
-Magento 2.4.2 Docker Environment
+Magento 2.4.x Docker Environment
 
 Services  : Nginx 1.14, PHP 7.4-fpm-buster, Mariadb 10.4
 
@@ -22,7 +22,7 @@ Tree
 └── magento24
 ```
 
-Magento 2.4 Docker Setup:
+Magento 2.4.x Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 
