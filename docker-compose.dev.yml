@@ -79,16 +79,16 @@ services:
         environment:
             "discovery.type": "single-node"
 
-    blackfire:
-        container_name: blackfire
-        image: blackfire/blackfire
-        ports: ["8707"]
-        environment:
-            # Exposes BLACKFIRE_* environment variables from the host
-            BLACKFIRE_SERVER_ID: ### Add server id ####
-            BLACKFIRE_SERVER_TOKEN: ### Add server token ###
-            BLACKFIRE_CLIENT_ID: ### Add client id ###
-            BLACKFIRE_CLIENT_TOKEN: ### Add client Token ###
+    #blackfire:
+    #    container_name: blackfire
+    #    image: blackfire/blackfire
+    #    ports: ["8707"]
+    #    environment:
+    #        # Exposes BLACKFIRE_* environment variables from the host
+    #        BLACKFIRE_SERVER_ID: ### Add server id ####
+    #        BLACKFIRE_SERVER_TOKEN: ### Add server token ###
+    #        BLACKFIRE_CLIENT_ID: ### Add client id ###
+    #        BLACKFIRE_CLIENT_TOKEN: ### Add client Token ###
 
 volumes:
     appdata:
