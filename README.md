@@ -25,12 +25,15 @@ Tree
 Magento 2.4 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
-    * Local machine should have alteast 16GB RAM
-    * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM
 
-2. Build the docker Images:
-        docker-compose build
-        docker-compose up -d
+    * Local machine should have alteast 16GB RAM
+    * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM    
+
+2. Clone magento2-docker repository and Build the docker Images:
+
+        * Goto "magento2-docker" folder and and create "magento24" folder(mkdir magento24)
+        * docker-compose build
+        * docker-compose up -d
 
 3. Add System variable in environmental settings ```SHELL=/bin/bash``` (windows)
 
