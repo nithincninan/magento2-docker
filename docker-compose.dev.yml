@@ -10,7 +10,9 @@ services:
             - 9000:9000
         volumes:
             - appdata:/var/www
-            - ./magento24:/var/www/magento24:cached
+            #- ./magento24/app:/var/www/magento24/app:delegated
+            #- ./magento24/composer.json:/var/www/magento24/composer.json:delegated
+            #- ./magento24/composer.lock:/var/www/magento24/composer.lock:delegated
             - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
         environment:
             MYSQL_USER: ${MYSQL_USER}
