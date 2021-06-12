@@ -25,7 +25,7 @@ Tree
 Magento 2.4 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
-    * Local machine have alteast 16GB RAM
+    * Local machine should have alteast 16GB RAM
     * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM
 
 2. Build the docker Images:
