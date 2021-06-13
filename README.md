@@ -60,12 +60,14 @@ Magento 2.4.x Docker Setup:
            
            * cd /var/www/magento24
            
+           * If its an existent project, clone project repository to the 'magento24', then update env.php and go to #8
+           
            * Install Magento Instance in magento24 ( https://devdocs.magento.com/guides/v2.4/install-gde/composer.html )
           
           	    1. composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.2 .
           		    * enter your Magento authentication keys
           		    
-          		2. Install Command(/var/www/magento24):
+          		2. Install M2 via CLI(/var/www/magento24):
                        
                        php bin/magento setup:install \
                                --db-host=mariadb \
@@ -87,7 +89,7 @@ Magento 2.4.x Docker Setup:
                                --search-engine=elasticsearch7 \
                                --elasticsearch-host=elasticsearch \
                                --elasticsearch-port=9200 \
-                           && chown -R www-data:www-data .
+                           && chown -R www-data:www-data .         
                            
                  3. Cross check if ES is configured, if not update the below setting in app/etc/env.php:
                              
