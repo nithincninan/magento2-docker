@@ -68,7 +68,7 @@ Magento 2.4.x Docker Setup:
           		2. Install Command(/var/www/magento24):
                        
                        php bin/magento setup:install \
-                               --db-host=mariadb_24 \
+                               --db-host=mariadb \
                                --db-name=mage24_db \
                                --db-user=mage24_user \
                                --db-password=mage24_pass \
