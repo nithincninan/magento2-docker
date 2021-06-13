@@ -410,7 +410,7 @@ and then pull again. As it is public repo you shouldn't need to login
                    * docker exec -it php bash then goto cd /var/www/magento24 and Run "chown -R www-data:www-data ."
                         
                         
-                * Make sure modifying the fies except (app/composer files) should be sync using "docker cp" command:
+                * Make sure modifying the files except (app/composer files) should be sync using "docker cp" command:
                 
                 ie, * once CLI completes(setup:upgrade / di:compile / content:deploy).
                     * Go to local machine DIR - ({{LOCALHOST-DIR}}/magento2-docker/magento24) and create sync_24.sh
