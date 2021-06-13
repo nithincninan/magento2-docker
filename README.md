@@ -392,7 +392,7 @@ and then pull again. As it is public repo you shouldn't need to login
         ]
     ],
 
-**For Performace tunning(docker):** (optional)
+**For Performace tunning(docker):** (optional - either use #2 or #3)
 
 ```
            1. Computer, Cores & RAM :
