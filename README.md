@@ -54,7 +54,9 @@ Magento 2.4.x Docker Setup:
 5. Install magento Instance:
 
 ```
-           Connect to php container: docker exec -it php bash
+           Connect to php container: 
+           
+           * docker exec -it php bash
            
            * cd /var/www/magento24
            
@@ -81,6 +83,7 @@ Magento 2.4.x Docker Setup:
                                --currency=USD \
                                --timezone=America/Chicago \
                                --use-rewrites=1 \
+                               --skip-db-validation \
                                --search-engine=elasticsearch7 \
                                --elasticsearch-host=elasticsearch \
                                --elasticsearch-port=9200 \
