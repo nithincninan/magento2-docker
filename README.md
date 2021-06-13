@@ -26,8 +26,8 @@ Magento 2.4.x Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 
-    * Local machine should have alteast 16GB RAM
-    * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM    
+    * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM
+    * Local machine have alteast 16GB RAM(Recommended)    
 
 2. Clone magento2-docker repository and Build the docker Images:
 
@@ -392,38 +392,41 @@ and then pull again. As it is public repo you shouldn't need to login
 **For Performace tunning(docker):** (optional)
 
 ```
-           1. Computer, Cores & RAM : 
+           1. Computer, Cores & RAM :
            
-                * Local machine have alteast 16GB RAM
                 * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM
+                * Local machine have alteast 16GB RAM(Recommended)
                 
            2. Use “delegated”/"cached" Volume Mounts for the files what is necessary for:
            
-                * Use docker-compose.dev.yaml: which will sync only app/composer files (Use after #1-#7):
+                * Setup docker-compose.dev.yaml [ which will sync only app/composer files (Use after #1-#7) ]:
                 
                    * docker-compose -f docker-compose.dev.yml up -d
-                   * docker cp magento24 php:/var/www/ (move all m2 files to php_24 container)
-                   * Enable the below options(docker-compose.dev.yml) and run: docker-compose -f docker-compose.dev.yml up -d
+                   * docker cp magento24 php:/var/www/ (move all m2 files to php container)
+                   * Enable the below options(docker-compose.dev.yml) and run : docker-compose -f docker-compose.dev.yml up -d
                     - ./magento24/app:/var/www/magento24/app:delegated
                     - ./magento24/composer.json:/var/www/magento24/composer.json:delegated
                     - ./magento24/composer.lock:/var/www/magento24/composer.lock:delegated
                    * docker exec -it php bash then goto cd /var/www/magento24 and Run "chown -R www-data:www-data ."
                         
                         
-                * Once CLI completes(setup:upgrade / di:compile / content:deploy).
-                   * Go to local machine DIR - ({{LOCALHOST-DIR}}/magento2-docker/magento24) and create sync_24.sh
-                   (sycn generated/pub-static directory from continer to host)
+                * Make sure the fils modified except (app/composer files) should be sync using "docker cp" command:
+                
+                ie, * once CLI completes(setup:upgrade / di:compile / content:deploy).
+                    * Go to local machine DIR - ({{LOCALHOST-DIR}}/magento2-docker/magento24) and create sync_24.sh
+                   (sycn generated/pub-static directory from continer to local host)
                    
-                   vi sync_24.sh and update:
-                    rm -rf pub\static\*
-                    docker cp php:/var/www/magento24/pub/static pub/
-                    rm -rf generated\code\*
-                    docker cp php:/var/www/magento24/generated/code generated/
+                        1. vi sync_24.sh and update:
+                   
+                            rm -rf pub\static\*
+                            docker cp php:/var/www/magento24/pub/static pub/
+                            rm -rf generated\code\*
+                            docker cp php:/var/www/magento24/generated/code generated/
                     
-                * docker exec -it php bash then goto cd /var/www/magento24 and Run "chown -R www-data:www-data ."
+                        2. Run sync_24.sh(from localhost)
                    
-                   
-           Note: 
-            * Make sure what ever files modifying except(app/composer files) should be sync using "docker cp" command ( host->continer / vice versa ).
-            * docker exec -it php bash -> goto cd /var/www/magento24 -> Run "chown -R www-data:www-data ."
+                        3. docker exec -it php bash then goto cd /var/www/magento24 and Run "chown -R www-data:www-data ."
+                
+           
+           3. Use unison docker sync for performance tunning.  
 ```
