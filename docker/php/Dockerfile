@@ -50,6 +50,10 @@ RUN echo "max_execution_time = 1800" > /usr/local/etc/php/conf.d/max-execution-t
 RUN echo "opcache.enable = 1" > /usr/local/etc/php/conf.d/opcache.ini
 RUN echo "opcache.save_comments = 1" > /usr/local/etc/php/conf.d/opcache.ini
 RUN echo "upload_max_filesize = 1024M" > /usr/local/etc/php/conf.d/upload-max-size.ini
+RUN echo "realpath_cache_size=10M" > /usr/local/etc/php/conf.d/realpath_cache_size.ini
+RUN echo "realpath_cache_ttl=7200" > /usr/local/etc/php/conf.d/realpath_cache_ttl.ini
+RUN echo "max_input_vars=20000" > /usr/local/etc/php/conf.d/max_input_vars.ini
+RUN echo "default_socket_timeout=900" > /usr/local/etc/php/conf.d/default_socket_timeout.ini
 
 # Install xdebug extension
 RUN pecl install xdebug && docker-php-ext-enable xdebug \
