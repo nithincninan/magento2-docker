@@ -29,7 +29,6 @@ services:
         volumes:
             - ./magento24:/var/www/magento24:cached
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-            - ./docker/nginx/m2-config/nginx.conf:/var/www/nginx.conf
         depends_on:
             - php
  
@@ -71,7 +70,7 @@ services:
             - "5672:5672"
 
     elasticsearch:
-        image: elasticsearch:7.6.2
+        image: elasticsearch:7.9.3
         container_name: elasticsearch
         ports:
             - "9200:9200"
