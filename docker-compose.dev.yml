@@ -71,7 +71,7 @@ services:
             - "5672:5672"
 
     elasticsearch:
-        image: elasticsearch:7.6.2
+        image: elasticsearch:7.9.3
         container_name: elasticsearch
         ports:
             - "9200:9200"
