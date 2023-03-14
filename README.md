@@ -1,8 +1,8 @@
 # Magento 2.4.x Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Elasticsearch + Rabbitmq
 
-Magento 2.4.x Docker Environment
+Magento 2.4.5 Docker Environment
 
-Services  : Nginx 1.14, PHP 7.4-fpm-buster, Mariadb 10.4
+Services  : Nginx 1.18, PHP 8.1-fpm-buster, Mariadb 10.4
 
 Tree
 ```
@@ -41,13 +41,13 @@ Magento 2.4.x Docker Setup:
 
 ```
 λ docker ps
-   9edaa3a3fd13   nginx:1.14-alpine               "nginx -g 'daemon of…"   12 minutes ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp                                                                                                                     nginx
+   9edaa3a3fd13   nginx:1.18               		  "nginx -g 'daemon of…"   12 minutes ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp                                                                                                                     nginx
    8e5ce3425639   mailhog/mailhog:latest          "MailHog"                12 minutes ago   Up 12 minutes       0.0.0.0:1025->1025/tcp, :::1025->1025/tcp, 0.0.0.0:8025->8025/tcp, :::8025->8025/tcp                                                                  mail
    24173dd2faf6   magento2-docker_php             "docker-php-entrypoi…"   12 minutes ago   Up 12 minutes       0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                                             php
    9552f52c3ce8   redis:latest                    "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       6379/tcp                                                                                                                                              redis
    42756510ba9b   mariadb:10.4                    "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       0.0.0.0:3306->3306/tcp, :::3306->3306/tcp                                                                                                             mariadb
    ee97a9094860   rabbitmq:3-management           "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, :::5672->5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp, :::15672->15672/tcp   rabbitmq
-   6944566615b7   elasticsearch:7.6.2             "/usr/local/bin/dock…"   12 minutes ago   Up 12 minutes       0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp                                                                  elasticsearch
+   6944566615b7   elasticsearch:7.17.0            "/usr/local/bin/dock…"   12 minutes ago   Up 12 minutes       0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp                                                                  elasticsearch
    7dab612ad6ec   redislabs/redisinsight:latest   "bash ./docker-entry…"   12 minutes ago   Up 12 minutes       0.0.0.0:8001->8001/tcp, :::8001->8001/tcp                                                                                                             redisinsight
 ````
 
@@ -358,7 +358,6 @@ and then pull again. As it is public repo you shouldn't need to login
         'amqp' => [
             'host' => 'rabbitmq',
             'user' => 'mdc_user',
-            'exchange_id' => 'mdc',
             'password' => 'mdc_pass',
             'port' => '5672',
             'virtualhost' => '/'
@@ -370,7 +369,7 @@ and then pull again. As it is public repo you shouldn't need to login
 
     ```
     elasticsearch:
-        image: elasticsearch:7.6.2
+        image: elasticsearch:7.17.0
         container_name: elasticsearch
         ports:
             - "9200:9200"
