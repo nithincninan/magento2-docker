@@ -1,5 +1,11 @@
 Changelog
 
+[2.0.7] - 2023-03-14
+
+* Adobe Commerce installation for (2.4.5-p1 docker setup)
+* nginx version / elasticsearch / php version upgraded
+* New Readme.md updated
+
 [2.0.6] - 2021-06-13
 
 * Fixed nginx config path and M2 installation issue (2.4.2 docker setup)

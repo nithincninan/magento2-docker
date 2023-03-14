@@ -23,7 +23,7 @@ services:
  
     nginx:
         container_name: nginx
-        image: nginx:1.14-alpine
+        image: nginx:1.18
         ports:
             - 80:80
         volumes:
@@ -70,7 +70,7 @@ services:
             - "5672:5672"
 
     elasticsearch:
-        image: elasticsearch:7.9.3
+        image: elasticsearch:7.17.0
         container_name: elasticsearch
         ports:
             - "9200:9200"
