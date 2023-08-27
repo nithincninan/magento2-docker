@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-buster
+FROM php:8.2-fpm-buster
 
 RUN echo "Acquire::http::Pipeline-Depth 0;" > /etc/apt/apt.conf.d/privet && echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/privet && echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/privet
 
@@ -39,8 +39,6 @@ RUN echo "opcache.memory_consumption=2048" > /usr/local/etc/php/conf.d/opcache.i
 RUN echo "upload_max_filesize = 1024M" > /usr/local/etc/php/conf.d/upload-max-size.ini
 RUN echo "realpath_cache_size=10M" > /usr/local/etc/php/conf.d/realpath_cache_size.ini
 RUN echo "realpath_cache_ttl=7200" > /usr/local/etc/php/conf.d/realpath_cache_ttl.ini
-#RUN echo "max_input_vars=20000" > /usr/local/etc/php/conf.d/max_input_vars.ini
-#RUN echo "default_socket_timeout=900" > /usr/local/etc/php/conf.d/default_socket_timeout.ini
 
 # Install xdebug extension
  RUN pecl install xdebug && docker-php-ext-enable xdebug \
@@ -61,7 +59,7 @@ RUN echo 'sendmail_path="/root/go/bin/mhsendmail --smtp-addr=mailhog:1025"' >> /
 #RUN mv /usr/local/bin/n98-magerun2-latest.phar /usr/local/bin/n98-magerun2.phar
 #RUN chmod +x /usr/local/bin/n98-magerun2.phar
 
-# Configure Blackfire settings
+#Configure Blackfire settings
 #RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
 #    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
 #    && mkdir -p /tmp/blackfire \
@@ -74,5 +72,6 @@ RUN echo 'sendmail_path="/root/go/bin/mhsendmail --smtp-addr=mailhog:1025"' >> /
 #    && curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire \
 #    && mv /tmp/blackfire/blackfire /usr/bin/blackfire \
 #    && rm -Rf /tmp/blackfire
+
 
 #RUN apt-get install tree
