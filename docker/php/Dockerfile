@@ -47,7 +47,8 @@ RUN echo "realpath_cache_ttl=7200" > /usr/local/etc/php/conf.d/realpath_cache_tt
     && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install Composer
-RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
+#RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
+RUN cd /usr/src && curl https://getcomposer.org/download/2.2.6/composer.phar --output composer.phar | php
 RUN cd /usr/src && mv composer.phar /usr/bin/composer
 
 # Configure MailHog
