@@ -73,7 +73,7 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                        
                         bin/magento setup:install \
                         --base-url=http://magento247.loc/ \
-                        --db-host=mariadb_247 \
+                        --db-host=mariadb \
                         --db-name=magento247 \
                         --db-user=mage247_user \
                         --db-password=mage247_pass \
