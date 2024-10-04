@@ -366,7 +366,7 @@ and then pull again. As it is public repo you shouldn't need to login
         'consumers_wait_for_messages' => 0
     ],
 
-# 15. Integrate Opensearch in Docker Compose:
+# 14. Integrate Opensearch in Docker Compose:
 
     ```
     opensearch:
