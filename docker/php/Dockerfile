@@ -41,15 +41,16 @@ RUN echo "realpath_cache_size=10M" > /usr/local/etc/php/conf.d/realpath_cache_si
 RUN echo "realpath_cache_ttl=7200" > /usr/local/etc/php/conf.d/realpath_cache_ttl.ini
 
 # Install xdebug extension
- RUN pecl install xdebug && docker-php-ext-enable xdebug \
-    && echo "xdebug.mode=develop,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+# RUN pecl install xdebug && docker-php-ext-enable xdebug \
+#    && echo "xdebug.mode=develop,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install Composer
-#RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
-RUN cd /usr/src && curl https://getcomposer.org/download/2.2.6/composer.phar --output composer.phar | php
+RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
+#RUN cd /usr/src && curl https://getcomposer.org/download/2.7/composer.phar --output composer.phar | php
 RUN cd /usr/src && mv composer.phar /usr/bin/composer
+RUN chmod -R 777 /usr/bin/composer
 
 # Configure MailHog
 RUN go get github.com/mailhog/mhsendmail

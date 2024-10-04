@@ -1,5 +1,11 @@
 Changelog
 
+[2.0.9] - 2023-08-28
+
+* Adobe Commerce installation for (2.4.7-p3 docker setup)
+* nginx version / opensearch / opensearchdashboard / php version upgraded
+* New Readme.md updated
+
 [2.0.8] - 2023-08-28
 
 * Adobe Commerce installation for (2.4.6-p2 docker setup)
