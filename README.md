@@ -94,17 +94,17 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                  3. Cross check if Opensearch is configured, if not update the below setting in app/etc/env.php:
                              
                         'system' => [
-                                'default' => [
-                                    'catalog' => [
-                                        'search' => [
-                                            'engine' => 'opensearch',
-                                            'opensearch_server_hostname' => 'opensearch',
-                                            'opensearch_server_port' => '9200',
-                                            'opensearch_index_prefix' => 'magento247',
-                                        ]
+                            'default' => [
+                                'catalog' => [
+                                    'search' => [
+                                        'engine' => 'opensearch',
+                                        'opensearch_server_hostname' => 'opensearch',
+                                        'opensearch_server_port' => '9200',
+                                        'opensearch_index_prefix' => 'magento247',
                                     ]
                                 ]
-                            ],
+                            ]
+                        ],
                            
                 4. Enable Developer Mode: php bin/magento deploy:mode:set developer
                 5. Make sure cache enabled : php bin/magento cache:enable
