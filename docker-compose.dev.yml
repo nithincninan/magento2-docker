@@ -1,4 +1,4 @@
-version: '4'
+version: '5'
 
 services:
 
@@ -10,7 +10,7 @@ services:
             - 9000:9000
         volumes:
             - appdata:/var/www
-            - ./magento247:/var/www/magento246:cached
+            - ./magento247:/var/www/magento247:cached
             - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
         environment:
             MYSQL_USER: ${MYSQL_USER}
@@ -27,7 +27,7 @@ services:
         ports:
             - 80:80
         volumes:
-            - ./magento247:/var/www/magento246:cached
+            - ./magento247:/var/www/magento247:cached
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - ./docker/nginx/m2-config/nginx.conf:/var/www/nginx.conf
         depends_on:
