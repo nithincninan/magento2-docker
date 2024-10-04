@@ -1,8 +1,8 @@
-# Magento 2.4.x Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Elasticsearch + Rabbitmq
+# Magento 2.4.x Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Openserach + Rabbitmq + Opensearch dashboards
 
-Magento 2.4.6 Docker Environment
+Magento 2.4.7 Docker Environment
 
-Services  : Nginx 1.22, PHP 8.2-fpm-buster, Mariadb 10.6
+Services  : Nginx 1.24, PHP 8.2-fpm-buster, Mariadb 10.6
 
 Tree
 ```
@@ -19,19 +19,19 @@ Tree
 │       └── www.conf
 ├── docker-compose.dev.yml
 ├── docker-compose.yml
-└── magento246
+└── magento247
 ```
 
-Magento 2.4.6-p2 Docker Setup:
+Magento 2.4.7 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 
-    * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 16.0 GB RAM
+    * Docker > Preferences > Resources > Advanced : at least 8 CPUs and 32.0 GB RAM
     * Local machine have alteast 32GB RAM(Recommended)    
 
 2. Clone magento2-docker repository and Build the docker Images:
 
-        * Goto "magento2-docker" folder and and create "magento246" folder(mkdir magento246)
+        * Goto "magento2-docker" folder
         * docker-compose build
         * docker-compose up -d
 
@@ -41,14 +41,16 @@ Magento 2.4.6-p2 Docker Setup:
 
 ```
 λ docker ps
-   9edaa3a3fd13   nginx:1.22               		  "nginx -g 'daemon of…"   12 minutes ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp                                                                                                                     nginx
-   8e5ce3425639   mailhog/mailhog:latest          "MailHog"                12 minutes ago   Up 12 minutes       0.0.0.0:1025->1025/tcp, :::1025->1025/tcp, 0.0.0.0:8025->8025/tcp, :::8025->8025/tcp                                                                  mail
-   24173dd2faf6   magento2-docker_php             "docker-php-entrypoi…"   12 minutes ago   Up 12 minutes       0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                                             php
-   9552f52c3ce8   redis:latest                    "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       6379/tcp                                                                                                                                              redis
-   42756510ba9b   mariadb:10.6                    "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       0.0.0.0:3306->3306/tcp, :::3306->3306/tcp                                                                                                             mariadb
-   ee97a9094860   rabbitmq:3-management           "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes       4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, :::5672->5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp, :::15672->15672/tcp   rabbitmq
-   6944566615b7   elasticsearch:7.17.12            "/usr/local/bin/dock…"   12 minutes ago   Up 12 minutes       0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp                                                                  elasticsearch
-   7dab612ad6ec   redislabs/redisinsight:latest   "bash ./docker-entry…"   12 minutes ago   Up 12 minutes       0.0.0.0:8001->8001/tcp, :::8001->8001/tcp                                                                                                             redisinsight
+   CONTAINER ID   IMAGE                                            COMMAND                  CREATED          STATUS          PORTS                                                                                                         NAMES
+14a915018e6d   opensearchproject/opensearch:2.12.0              "./opensearch-docker…"   3 minutes ago    Up 12 seconds   0.0.0.0:9200->9200/tcp, 9600/tcp, 0.0.0.0:9300->9300/tcp, 9650/tcp                                            opensearch
+547ffe03cf7b   opensearchproject/opensearch-dashboards:2.12.0   "./opensearch-dashbo…"   3 minutes ago    Up 3 minutes    0.0.0.0:5601->5601/tcp                                                                                        opensearch-dashboards
+cdc8722a755e   mailhog/mailhog:latest                           "MailHog"                44 minutes ago   Up 42 seconds   0.0.0.0:1025->1025/tcp, 0.0.0.0:8025->8025/tcp                                                                mail
+5d16f7bc0a90   nginx:1.24                                       "/docker-entrypoint.…"   44 minutes ago   Up 42 seconds   0.0.0.0:80->80/tcp                                                                                            nginx
+c4a7a2768af2   rabbitmq:3-management                            "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq
+1110b0d9877b   magento2-docker-php                              "docker-php-entrypoi…"   44 minutes ago   Up 3 minutes    0.0.0.0:9000->9000/tcp                                                                                        php
+b33d23344551   mariadb:10.6                                     "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    0.0.0.0:3306->3306/tcp                                                                                        mariadb
+9426ebf05e3d   redislabs/redisinsight:latest                    "bash ./docker-entry…"   44 minutes ago   Up 3 minutes    0.0.0.0:8001->8001/tcp                                                                                        redisinsight
+9f461194bf35   redis:latest                                     "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    6379/tcp                                                                                                      redis
 ````
 
 5. Install magento Instance:
@@ -58,23 +60,23 @@ Magento 2.4.6-p2 Docker Setup:
            
            * docker exec -it php bash
            
-           * cd /var/www/magento246
+           * cd /var/www/magento247
            
-           * If its an existent project, clone project repository to the 'magento246', then update env.php and go to #8
+           * If its an existent project, clone project repository to the 'magento247', then update env.php and go to #8
            
-           * Install Magento Instance in magento246 ( https://devdocs.magento.com/guides/v2.4/install-gde/composer.html )
+           * Install Magento Instance magento247 ( https://devdocs.magento.com/guides/v2.4/install-gde/composer.html )
           
-          	    1. composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.6-p2 .
+          	    1. composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.7 .
           		    * enter your Magento authentication keys
           		    
-          		2. Install M2 via CLI(/var/www/magento246):
+          		2. Install M2 via CLI(/var/www/magento247):
                        
                         bin/magento setup:install \
-                        --base-url=http://magento246.loc/ \
-                        --db-host=mariadb_246 \
-                        --db-name=magento246 \
-                        --db-user=mage246_user \
-                        --db-password=mage246_pass \
+                        --base-url=http://magento247.loc/ \
+                        --db-host=mariadb_247 \
+                        --db-name=magento247 \
+                        --db-user=mage247_user \
+                        --db-password=mage247_pass \
                         --admin-firstname=admin \
                         --admin-lastname=admin \
                         --admin-email=admin@admin.com \
@@ -84,10 +86,10 @@ Magento 2.4.6-p2 Docker Setup:
                         --currency=USD \
                         --timezone=America/Chicago \
                         --use-rewrites=1 \
-                        --search-engine=elasticsearch7 \
-                        --elasticsearch-host=elasticsearch \
-                        --elasticsearch-index-prefix=magento246 \
-                        --elasticsearch-port=9200         
+                        --search-engine=opensearch \
+                        --opensearch-host=opensearch \
+                        --opensearch-index-prefix=magento247 \
+                        --opensearch-port=9200         
                            
                  3. Cross check if ES is configured, if not update the below setting in app/etc/env.php:
                              
@@ -95,10 +97,10 @@ Magento 2.4.6-p2 Docker Setup:
                                 'default' => [
                                     'catalog' => [
                                         'search' => [
-                                            'engine' => 'elasticsearch7',
-                                            'elasticsearch7_server_hostname' => 'elasticsearch',
-                                            'elasticsearch7_server_port' => '9200',
-                                            'elasticsearch7_index_prefix' => 'magento246'
+                                            'engine' => 'opensearch',
+                                            'opensearch_server_hostname' => 'opensearch',
+                                            'opensearch_server_port' => '9200',
+                                            'opensearch_index_prefix' => 'magento247',
                                         ]
                                     ]
                                 ]
@@ -121,13 +123,13 @@ Magento 2.4.6-p2 Docker Setup:
           		    
 ```        
 
-6. Configure your hosts file: 127.0.0.1 magento246.loc 
+6. Configure your hosts file: 127.0.0.1 magento247.loc 
    1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
    2. Mac/Ubuntu:-  /etc/hosts
 
-7. Open http://magento246.loc/ 
+7. Open http://magento247.loc/ 
 
-8. Open http://magento246.loc/admin/
+8. Open http://magento247.loc/admin/
 
 9. MailHog:- You are able to see all the emails from docker(Magento Instance) on http://localhost:8025/
 
@@ -151,16 +153,16 @@ and then pull again. As it is public repo you shouldn't need to login
  
          
          map $http_host $MAGE_RUN_CODE {
-            magento246-second.loc second_website_code;
-            magento246.loc base;
+            magento247-second.loc second_website_code;
+            magento247.loc base;
          }
          upstream fastcgi_backend {
               server php:9000;
           }
           server {
               listen 80;
-              server_name magento246.loc magento246-second.loc;
-              set $MAGE_ROOT /var/www/magento246;
+              server_name magento247.loc magento247-second.loc;
+              set $MAGE_ROOT /var/www/magento247;
               set $MAGE_MODE developer;
               fastcgi_param  MAGE_MODE $MAGE_MODE;
 
@@ -169,17 +171,17 @@ and then pull again. As it is public repo you shouldn't need to login
               fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
               fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
 
-              include /var/www/magento246/nginx.conf.sample;
+              include /var/www/magento247/nginx.conf.sample;
               error_log /var/log/nginx/error.log;
               access_log /var/log/nginx/access.log;
           }
           
        
-  10.3). Configure your hosts file: 127.0.0.1 magento246.loc magento246-second.loc <br />
+  10.3). Configure your hosts file: 127.0.0.1 magento247.loc magento247-second.loc <br />
             1. In windows:-  c:\Windows\System32\Drivers\etc\hosts. <br />
             2. Mac/Ubuntu:-  /etc/hosts     <br />
   
-  10.4). Modifty nginx.conf.sample(magento246/nginx.conf.sample)<br />
+  10.4). Modifty nginx.conf.sample(magento247/nginx.conf.sample)<br />
   
    PHP entry point:- Add the below lines before include statement:   
    
@@ -266,8 +268,7 @@ and then pull again. As it is public repo you shouldn't need to login
    
             redis:
               container_name: redis
-              #image: redis:latest
-              image: redis:5.0.5
+              image: redis:latest
             
             redisinsight:
               container_name: redisinsight
@@ -363,72 +364,37 @@ and then pull again. As it is public repo you shouldn't need to login
         'consumers_wait_for_messages' => 0
     ],
 
-# 14. Integrate Elasticsearch in Docker Compose:
+# 15. Integrate Opensearch in Docker Compose:
 
     ```
-    elasticsearch:
-        image: elasticsearch:7.17.12
-        container_name: elasticsearch
+    opensearch:
+        image: opensearchproject/opensearch:2.12.0
+        container_name: opensearch
         ports:
             - "9200:9200"
             - "9300:9300"
         environment:
             "discovery.type": "single-node"
+            OPENSEARCH_INITIAL_ADMIN_PASSWORD: ${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+            DISABLE_SECURITY_PLUGIN: true
+        networks:
+            - magento_network
     ```
 
     Open app/etc/env.php and add/update the corresponding data:
     ```
-     'system' => [
+    'system' => [
         'default' => [
             'catalog' => [
                 'search' => [
-                    'engine' => 'elasticsearch7',
-                    'elasticsearch7_server_hostname' => 'elasticsearch',
-                    'elasticsearch7_server_port' => '9200',
-                    'elasticsearch7_index_prefix' => 'magento246'
+                    'engine' => 'opensearch',
+                    'opensearch_server_hostname' => 'opensearch',
+                    'opensearch_server_port' => '9200',
+                    'opensearch_index_prefix' => 'magento247',
+                    #'opensearch_enable_auth' => 1,
+                    #'opensearch_username' => 'admin',
+                    #'opensearch_password' => 'Opensearch%86421'
                 ]
             ]
         ]
-    ],
-
-**For Performace tunning(docker):** (optional - either use #2 or #3)
-
-```
-           1. Computer, Cores & RAM :
-           
-                * Docker > Preferences > Resources > Advanced : at least 4 or 5 CPUs and 8.0 GB RAM
-                * Local machine have alteast 16GB RAM(Recommended)
-                
-           2. Use “delegated”/"cached" Volume Mounts for the files what is necessary for:
-           
-                * Setup docker-compose.dev.yaml [ which will sync only app/composer files (Use after #1-#7) ]:
-                
-                   * docker-compose -f docker-compose.dev.yml up -d
-                   * docker cp magento246 php:/var/www/ (move all m2 files to php container)
-                   * Enable the below options(docker-compose.dev.yml) and run : docker-compose -f docker-compose.dev.yml up -d
-                    - ./magento246/app:/var/www/magento246/app:delegated
-                    - ./magento246/composer.json:/var/www/magento246/composer.json:delegated
-                    - ./magento246/composer.lock:/var/www/magento246/composer.lock:delegated
-                   * docker exec -it php bash then goto cd /var/www/magento246
-                        
-                        
-                * Make sure modifying the files except (app/composer files) should be sync using "docker cp" command:
-                
-                ie, * once CLI completes(setup:upgrade / di:compile / content:deploy).
-                    * Go to local machine DIR - ({{LOCALHOST-DIR}}/magento2-docker/magento24) and create sync_24.sh
-                   (sycn generated/pub-static directory from continer to local host)
-                   
-                        1. vi sync_24.sh and update:
-                   
-                            rm -rf pub\static\*
-                            docker cp php:/var/www/magento246/pub/static pub/
-                            rm -rf generated\code\*
-                            docker cp php:/var/www/magento246/generated/code generated/
-                    
-                        2. Run sync_24.sh(from localhost)
-                   
-                        3. docker exec -it php bash then goto cd /var/www/magento246
-                
-           
-           3. Use unison docker sync for performance tunning.  
-```
+    ],    
