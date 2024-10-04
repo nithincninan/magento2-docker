@@ -91,7 +91,7 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                         --opensearch-index-prefix=magento247 \
                         --opensearch-port=9200         
                            
-                 3. Cross check if ES is configured, if not update the below setting in app/etc/env.php:
+                 3. Cross check if Opensearch is configured, if not update the below setting in app/etc/env.php:
                              
                         'system' => [
                                 'default' => [
@@ -108,11 +108,11 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                            
                 4. Enable Developer Mode: php bin/magento deploy:mode:set developer
                 5. Make sure cache enabled : php bin/magento cache:enable
-                6. Configure Redis default/page caching
+                6. Configure Redis default/page caching (if required)
                      php bin/magento setup:config:set --cache-backend=redis --cache-backend-redis-server=redis --cache-backend-redis-port=6379 --cache-backend-redis-db=0
                      bin/magento setup:config:set --page-cache=redis --page-cache-redis-server=redis --page-cache-redis-db=1
          
-                7. Configure Redis for session storage
+                7. Configure Redis for session storage (if required)
                     php bin/magento setup:config:set --session-save=redis --session-save-redis-host=redis --session-save-redis-port=6379 --session-save-redis-log-level=4 --session-save-redis-db=2
      
                 8. Run the cli commands:
@@ -120,6 +120,8 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                     * php bin/magento setup:di:compile
                     * php -dmemory_limit=6G bin/magento setup:static-content:deploy -f
                     * chmod -R 777 var pub generated app/etc/*
+
+                    Note: File ownership and permissions refer https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions
           		    
 ```        
 
