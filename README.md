@@ -87,7 +87,8 @@ Magento 2.4.6-p2 Docker Setup:
                         --search-engine=elasticsearch7 \
                         --elasticsearch-host=elasticsearch \
                         --elasticsearch-index-prefix=magento246 \
-                        --elasticsearch-port=9200         
+                        --elasticsearch-port=9200 \
+                        && chown -R www-data:www-data .         
                            
                  3. Cross check if ES is configured, if not update the below setting in app/etc/env.php:
                              
