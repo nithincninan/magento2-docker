@@ -89,7 +89,8 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                         --search-engine=opensearch \
                         --opensearch-host=opensearch \
                         --opensearch-index-prefix=magento247 \
-                        --opensearch-port=9200         
+                        --opensearch-port=9200 \
+                        && chown -R www-data:www-data .
                            
                  3. Cross check if Opensearch is configured, if not update the below setting in app/etc/env.php:
                              
