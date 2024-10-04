@@ -216,6 +216,7 @@ and then pull again. As it is public repo you shouldn't need to login
        include        fastcgi_params;
    }
    ```
+  
  11. Integrating Blackfire.io with Docker Compose:
   
         Official Documentation: https://blackfire.io/docs/integrations/docker/index
@@ -343,6 +344,7 @@ and then pull again. As it is public repo you shouldn't need to login
            ],
    ...
    ```
+
 13. Integrate Rabbitmq in Docker Compose:
     
     ```
@@ -366,6 +368,7 @@ and then pull again. As it is public repo you shouldn't need to login
         ],
         'consumers_wait_for_messages' => 0
     ],
+
 
 14. Integrate Opensearch in Docker Compose:
 
