@@ -148,7 +148,7 @@ $ docker logout
 and then pull again. As it is public repo you shouldn't need to login
 ```
 
-# 10. To Setup Muiltiple Website:
+10. To Setup Muiltiple Website:
 
  10.1) Setup Websites, Stores and Storeviews in Magento Admin <br />
  
@@ -216,7 +216,7 @@ and then pull again. As it is public repo you shouldn't need to login
        include        fastcgi_params;
    }
    ```
-# 11. Integrating Blackfire.io with Docker Compose:
+ 11. Integrating Blackfire.io with Docker Compose:
   
         Official Documentation: https://blackfire.io/docs/integrations/docker/index
   
@@ -263,7 +263,7 @@ and then pull again. As it is public repo you shouldn't need to login
                 && rm -Rf /tmp/blackfire
                 
 
-# 12. Integrate Redis/Redisinsight in Docker Compose:
+ 12. Integrate Redis/Redisinsight in Docker Compose:
    
      1. Add Redis to your network:
             
@@ -343,7 +343,7 @@ and then pull again. As it is public repo you shouldn't need to login
            ],
    ...
    ```
-# 13. Integrate Rabbitmq in Docker Compose:
+13. Integrate Rabbitmq in Docker Compose:
     
     ```
     rabbitmq:
@@ -367,7 +367,7 @@ and then pull again. As it is public repo you shouldn't need to login
         'consumers_wait_for_messages' => 0
     ],
 
-# 14. Integrate Opensearch in Docker Compose:
+14. Integrate Opensearch in Docker Compose:
 
     ```
     opensearch:
