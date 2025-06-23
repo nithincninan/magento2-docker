@@ -1,8 +1,8 @@
 # Magento 2.4.x Docker + Xdebug(Phpstorm) + MailHog + Multiple Website + Blackfire + Redis/Redisinsight + Openserach + Rabbitmq + Opensearch dashboards
 
-Magento 2.4.7 Docker Environment
+Magento 2.4.4-p13 Docker Environment
 
-Services  : Nginx 1.24, PHP 8.2-fpm-buster, Mariadb 10.6
+Services  : Nginx 1.26, PHP 8.1-fpm-buster, Mariadb 10.6
 
 Tree
 ```
@@ -22,7 +22,7 @@ Tree
 └── magento247
 ```
 
-Magento 2.4.7 Docker Setup:
+Magento 2.4.4-p13 Docker Setup:
 
 1. Download and install docker app (windows/Mac)
 
@@ -31,7 +31,7 @@ Magento 2.4.7 Docker Setup:
 
 2. Clone magento2-docker repository and Build the docker Images:
 
-        * Goto "magento2-docker" folder
+        * Goto "magento244" folder
         * docker-compose build
         * docker-compose up -d
 
@@ -41,16 +41,15 @@ Magento 2.4.7 Docker Setup:
 
 ```
 λ docker ps
-   CONTAINER ID   IMAGE                                            COMMAND                  CREATED          STATUS          PORTS                                                                                                         NAMES
-14a915018e6d   opensearchproject/opensearch:2.12.0              "./opensearch-docker…"   3 minutes ago    Up 12 seconds   0.0.0.0:9200->9200/tcp, 9600/tcp, 0.0.0.0:9300->9300/tcp, 9650/tcp                                            opensearch
-547ffe03cf7b   opensearchproject/opensearch-dashboards:2.12.0   "./opensearch-dashbo…"   3 minutes ago    Up 3 minutes    0.0.0.0:5601->5601/tcp                                                                                        opensearch-dashboards
-cdc8722a755e   mailhog/mailhog:latest                           "MailHog"                44 minutes ago   Up 42 seconds   0.0.0.0:1025->1025/tcp, 0.0.0.0:8025->8025/tcp                                                                mail
-5d16f7bc0a90   nginx:1.24                                       "/docker-entrypoint.…"   44 minutes ago   Up 42 seconds   0.0.0.0:80->80/tcp                                                                                            nginx
-c4a7a2768af2   rabbitmq:3-management                            "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq
-1110b0d9877b   magento2-docker-php                              "docker-php-entrypoi…"   44 minutes ago   Up 3 minutes    0.0.0.0:9000->9000/tcp                                                                                        php
-b33d23344551   mariadb:10.6                                     "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    0.0.0.0:3306->3306/tcp                                                                                        mariadb
-9426ebf05e3d   redislabs/redisinsight:latest                    "bash ./docker-entry…"   44 minutes ago   Up 3 minutes    0.0.0.0:8001->8001/tcp                                                                                        redisinsight
-9f461194bf35   redis:latest                                     "docker-entrypoint.s…"   44 minutes ago   Up 3 minutes    6379/tcp                                                                                                      redis
+CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS         PORTS                                                                                                         NAMES
+2d1dc4d759b9   mailhog/mailhog:latest               "MailHog"                14 minutes ago   Up 1 second    0.0.0.0:1025->1025/tcp, 0.0.0.0:8025->8025/tcp                                                                mail_244p13
+0b6622e75157   nginx:1.26                           "/docker-entrypoint.…"   14 minutes ago   Up 1 second    0.0.0.0:80->80/tcp                                                                                            nginx_244p13
+ef3284d69687   magento244p13-php                    "docker-php-entrypoi…"   14 minutes ago   Up 2 seconds   0.0.0.0:9000->9000/tcp                                                                                        php_244p13
+be9fe2e1a0d5   redislabs/redisinsight:latest        "./docker-entry.sh n…"   14 minutes ago   Up 2 seconds   5000/tcp, 0.0.0.0:8001->8001/tcp                                                                              redisinsight_244p13
+567d2fcf0195   mariadb:10.6                         "docker-entrypoint.s…"   14 minutes ago   Up 2 seconds   0.0.0.0:3306->3306/tcp                                                                                        mariadb_244p13
+80cd246a10b2   opensearchproject/opensearch:2.2.0   "./opensearch-docker…"   14 minutes ago   Up 2 seconds   0.0.0.0:9200->9200/tcp, 9600/tcp, 0.0.0.0:9300->9300/tcp, 9650/tcp                                            opensearch_244p13
+c423193d8afd   redis:7.2                            "docker-entrypoint.s…"   14 minutes ago   Up 2 seconds   6379/tcp                                                                                                      redis_244p13
+049270ea0c8e   rabbitmq:3.9-management              "docker-entrypoint.s…"   14 minutes ago   Up 2 seconds   4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq_244p13                                                                                                      redis
 ````
 
 5. Install magento Instance:
@@ -60,23 +59,42 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
            
            * docker exec -it php bash
            
-           * cd /var/www/magento247
+           * cd /var/www/magento244
            
-           * If its an existent project, clone project repository to the 'magento247', then update env.php and go to #8
+           * If its an existent project, clone project repository to the 'magento244', then update env.php and go to #8
            
-           * Install Magento Instance magento247 ( https://devdocs.magento.com/guides/v2.4/install-gde/composer.html )
+           * If on-premesis, Install Magento Instance magento244 ( https://devdocs.magento.com/guides/v2.4/install-gde/composer.html )
+           * if Cloud Instance, clone the files from https://github.com/magento/magento-cloud and use the branch accordingly.
           
-          	    1. composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.7 .
-          		    * enter your Magento authentication keys
+          	    1. On-premesis:
+          	    
+          	        composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.4-p13 .
+          	        * enter your Magento authentication keys
+          	        
+          	       Cloud: 
+          	          
+          	          git clone -b 2.4.4-p1-p8 https://github.com/magento/magento-cloud.git . & add below line in composer.json
+          	          -->  "magento/product-enterprise-edition": "2.4.4-p13"
+          	          
+          	          ie,
+          	          
+          	          "magento/magento-cloud-metapackage": ">=2.4.4 <2.4.5",
+                      "magento/composer-root-update-plugin": "^2.0.2",
+                      "magento/product-enterprise-edition": "2.4.4-p13",
           		    
-          		2. Install M2 via CLI(/var/www/magento247):
+          		2. composer install 
+          		     - Remove composer.lock file
+          		     - composer install
+          		     - Push the updated composer.lock file to your repository
+          		
+          		3. Install M2 via CLI(/var/www/magento244):
                        
                         bin/magento setup:install \
-                        --base-url=http://magento247.loc/ \
-                        --db-host=mariadb \
-                        --db-name=magento247 \
-                        --db-user=mage247_user \
-                        --db-password=mage247_pass \
+                        --base-url=http://magento244p13.loc/ \
+                        --db-host=mariadb_244p13 \
+                        --db-name=magento244 \
+                        --db-user=mage244_user \
+                        --db-password=mage244_pass \
                         --admin-firstname=admin \
                         --admin-lastname=admin \
                         --admin-email=admin@admin.com \
@@ -88,7 +106,7 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                         --use-rewrites=1 \
                         --search-engine=opensearch \
                         --opensearch-host=opensearch \
-                        --opensearch-index-prefix=magento247 \
+                        --opensearch-index-prefix=magento244 \
                         --opensearch-port=9200 \
                         && chown -R www-data:www-data .
                            
@@ -99,12 +117,25 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
                                 'catalog' => [
                                     'search' => [
                                         'engine' => 'opensearch',
-                                        'opensearch_server_hostname' => 'opensearch',
+                                        'opensearch_server_hostname' => 'opensearch_244p13',
                                         'opensearch_server_port' => '9200',
-                                        'opensearch_index_prefix' => 'magento247',
+                                        'opensearch_index_prefix' => 'magento244',
                                     ]
                                 ]
                             ]
+                        ],
+                        
+                      Rabbitmq:
+                      
+                        'queue' => [
+                            'amqp' => [
+                                'host' => 'rabbitmq_244p13',
+                                'port' => '5672',
+                                'user' => 'guest',
+                                'password' => 'guest',
+                                'virtualhost' => '/'
+                            ],
+                            'consumers_wait_for_messages' => 1
                         ],
                            
                 4. Enable Developer Mode: php bin/magento deploy:mode:set developer
@@ -126,13 +157,13 @@ b33d23344551   mariadb:10.6                                     "docker-entrypoi
           		    
 ```        
 
-6. Configure your hosts file: 127.0.0.1 magento247.loc 
+6. Configure your hosts file: 127.0.0.1 magento244p13.loc
    1. In windows:-  c:\Windows\System32\Drivers\etc\hosts.
    2. Mac/Ubuntu:-  /etc/hosts
 
-7. Open http://magento247.loc/ 
+7. Open http://magento244p13.loc/ 
 
-8. Open http://magento247.loc/admin/
+8. Open http://magento244p13.loc/admin/
 
 9. MailHog:- You are able to see all the emails from docker(Magento Instance) on http://localhost:8025/
 
@@ -156,16 +187,16 @@ and then pull again. As it is public repo you shouldn't need to login
  
          
          map $http_host $MAGE_RUN_CODE {
-            magento247-second.loc second_website_code;
-            magento247.loc base;
+            magento244p13-second.loc second_website_code;
+            magento244p13.loc base;
          }
          upstream fastcgi_backend {
               server php:9000;
           }
           server {
               listen 80;
-              server_name magento247.loc magento247-second.loc;
-              set $MAGE_ROOT /var/www/magento247;
+              server_name magento244p13.loc magento244p13-second.loc;
+              set $MAGE_ROOT /var/www/magento244;
               set $MAGE_MODE developer;
               fastcgi_param  MAGE_MODE $MAGE_MODE;
 
@@ -174,17 +205,17 @@ and then pull again. As it is public repo you shouldn't need to login
               fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
               fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
 
-              include /var/www/magento247/nginx.conf.sample;
+              include /var/www/magento244/nginx.conf.sample;
               error_log /var/log/nginx/error.log;
               access_log /var/log/nginx/access.log;
           }
           
        
-  10.3). Configure your hosts file: 127.0.0.1 magento247.loc magento247-second.loc <br />
+  10.3). Configure your hosts file: 127.0.0.1 magento244p13.loc magento244p13-second.loc <br />
             1. In windows:-  c:\Windows\System32\Drivers\etc\hosts. <br />
             2. Mac/Ubuntu:-  /etc/hosts     <br />
   
-  10.4). Modifty nginx.conf.sample(magento247/nginx.conf.sample)<br />
+  10.4). Modifty nginx.conf.sample(magento244/nginx.conf.sample)<br />
   
    PHP entry point:- Add the below lines before include statement:   
    
@@ -349,8 +380,8 @@ and then pull again. As it is public repo you shouldn't need to login
     
     ```
     rabbitmq:
-        container_name: rabbitmq
-        image: rabbitmq:3-management
+        container_name: rabbitmq_244p13
+        image: rabbitmq:3.9-management
         ports:
             - "15672:15672"
             - "5672:5672"
@@ -360,13 +391,13 @@ and then pull again. As it is public repo you shouldn't need to login
     ```
      'queue' => [
         'amqp' => [
-            'host' => 'rabbitmq',
-            'user' => 'mdc_user',
-            'password' => 'mdc_pass',
+            'host' => 'rabbitmq_244p13',
             'port' => '5672',
+            'user' => 'guest',
+            'password' => 'guest',
             'virtualhost' => '/'
         ],
-        'consumers_wait_for_messages' => 0
+        'consumers_wait_for_messages' => 1
     ],
 
 
@@ -374,8 +405,8 @@ and then pull again. As it is public repo you shouldn't need to login
 
     ```
     opensearch:
-        image: opensearchproject/opensearch:2.12.0
-        container_name: opensearch
+        image: opensearchproject/opensearch:2.2.0
+        container_name: opensearch_244p13
         ports:
             - "9200:9200"
             - "9300:9300"
@@ -394,13 +425,10 @@ and then pull again. As it is public repo you shouldn't need to login
             'catalog' => [
                 'search' => [
                     'engine' => 'opensearch',
-                    'opensearch_server_hostname' => 'opensearch',
+                    'opensearch_server_hostname' => 'opensearch_244p13',
                     'opensearch_server_port' => '9200',
-                    'opensearch_index_prefix' => 'magento247',
-                    #'opensearch_enable_auth' => 1,
-                    #'opensearch_username' => 'admin',
-                    #'opensearch_password' => 'Opensearch%86421'
+                    'opensearch_index_prefix' => 'magento244'
                 ]
             ]
         ]
-    ],    
+    ],  
