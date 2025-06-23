@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-buster
+FROM php:8.1-fpm-buster
 
 RUN echo "Acquire::http::Pipeline-Depth 0;" > /etc/apt/apt.conf.d/privet && echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/privet && echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/privet
 
@@ -47,8 +47,8 @@ RUN echo "realpath_cache_ttl=7200" > /usr/local/etc/php/conf.d/realpath_cache_tt
 #    && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install Composer
-RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
-#RUN cd /usr/src && curl https://getcomposer.org/download/2.7/composer.phar --output composer.phar | php
+#RUN cd /usr/src && curl -sS http://getcomposer.org/installer | php
+RUN cd /usr/src && curl https://getcomposer.org/download/2.2.23/composer.phar --output composer.phar | php
 RUN cd /usr/src && mv composer.phar /usr/bin/composer
 RUN chmod -R 777 /usr/bin/composer
 
