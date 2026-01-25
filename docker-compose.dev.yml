@@ -1,33 +1,31 @@
-version: '5'
-
 services:
 
     php:
-        container_name: php
+        container_name: php_mgd
         build:
             context: ./docker/php
         ports:
             - 9000:9000
         volumes:
             - appdata:/var/www
-            - ./magento247:/var/www/magento247:cached
+            - ./malabargold:/var/www/malabargold:cached
             - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
         environment:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             PHP_XDEBUG_ENABLED: 1
             XDEBUG_CONFIG: remote_host=host.docker.internal
-            PHP_IDE_CONFIG: "serverName=magento247"
+            PHP_IDE_CONFIG: "serverName=malabargold"
         networks:
             - magento_network    
  
     nginx:
-        container_name: nginx
-        image: nginx:1.24
+        container_name: nginx_mgd
+        image: nginx:1.26
         ports:
             - 80:80
         volumes:
-            - ./magento247:/var/www/magento247:cached
+            - ./malabargold:/var/www/malabargold:cached
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - ./docker/nginx/m2-config/nginx.conf:/var/www/nginx.conf
         depends_on:
@@ -36,7 +34,7 @@ services:
             - magento_network    
  
     db:
-        container_name: mariadb
+        container_name: mariadb_mgd
         image: mariadb:10.6
         ports:
             - 3306:3306
@@ -95,18 +93,6 @@ services:
         networks:
             - magento_network
     
-    opensearch-dashboards:
-        image: opensearchproject/opensearch-dashboards:2.12.0
-        container_name: opensearch-dashboards
-        ports:
-            - 5601:5601
-        expose:
-            - '5601'
-        environment:
-            OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
-            DISABLE_SECURITY_DASHBOARDS_PLUGIN: true
-        networks:
-            - magento_network
 
     #blackfire:
     #    container_name: blackfire
