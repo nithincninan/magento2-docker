@@ -23,7 +23,7 @@ services:
  
     nginx:
         container_name: nginx
-        image: nginx:1.24
+        image: nginx:1.26
         ports:
             - 80:80
         volumes:
@@ -65,13 +65,13 @@ services:
         networks:
             - magento_network
         
-    redisinsight:
-      container_name: redisinsight
-      image: redislabs/redisinsight:latest
-      ports:
-          - 8001:8001
-      networks:
-            - magento_network    
+    #redisinsight:
+    #  container_name: redisinsight
+    #  image: redislabs/redisinsight:latest
+    #  ports:
+    #      - 8001:8001
+    #  networks:
+    #        - magento_network    
 
     rabbitmq:
         container_name: rabbitmq
