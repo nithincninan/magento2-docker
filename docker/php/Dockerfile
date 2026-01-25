@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-buster
+FROM php:8.3-fpm-bookworm
 
 RUN echo "Acquire::http::Pipeline-Depth 0;" > /etc/apt/apt.conf.d/privet && echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/privet && echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/privet
 
@@ -53,7 +53,8 @@ RUN cd /usr/src && mv composer.phar /usr/bin/composer
 RUN chmod -R 777 /usr/bin/composer
 
 # Configure MailHog
-RUN go get github.com/mailhog/mhsendmail
+#RUN go get github.com/mailhog/mhsendmail
+RUN go install github.com/mailhog/mhsendmail@latest
 RUN echo 'sendmail_path="/root/go/bin/mhsendmail --smtp-addr=mailhog:1025"' >> /usr/local/etc/php/conf.d/mail.ini
 
 # Install n98-magerun2
