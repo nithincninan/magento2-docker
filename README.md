@@ -2,7 +2,7 @@
 
 Magento 2.4.7 Docker Environment
 
-Services  : Nginx 1.24, PHP 8.2-fpm-buster, Mariadb 10.6
+Services  : Nginx 1.26, PHP 8.3, Mariadb 10.6
 
 Tree
 ```
